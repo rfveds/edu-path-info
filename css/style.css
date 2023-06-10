@@ -28,13 +28,12 @@ body {
     height: 70%;
 }
 
-
-#overlayContent {
+#overlayContent1, #overlayContent2 {
     position: absolute;
     top: 15%;
-    left: 50%;
-    width: 400px;
-    height: 400px;
+    left: 15%;
+    width: 500px;
+    height: 600px;
     display: none;
     background-color: rgba(255, 255, 255, 0.9);
     justify-content: center;
@@ -42,12 +41,12 @@ body {
     flex-direction: column;
 }
 
-#overlayText {
+.overlayText {
     font-size: 18px;
     margin-bottom: 10px;
 }
 
-#closeButton {
+#closeButton1, #closeButton2 {
     padding: 5px 10px;
     border: none;
     background-color: #ddd;
