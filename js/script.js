@@ -70,14 +70,20 @@ function drawBackground() {
 // Function to show the overlay content
 function showOverlayContent1() {
     overlayContent1.style.display = 'flex';
+    drawBackground()
 }
 
 function showOverlayContent2() {
     overlayContent2.style.display = 'flex';
+    drawBackground()
 }
 
 // Function to close the overlay content
-function closeOverlayContent() {
+function closeOverlayContent1() {
+    overlayContent1.style.display = 'none';
+    overlayContent2.style.display = 'none';
+}
+function closeOverlayContent2() {
     overlayContent1.style.display = 'none';
     overlayContent2.style.display = 'none';
 }
@@ -158,10 +164,14 @@ canvas.addEventListener("click", function (event) {
         mouseY >= 0 - cameraY + 200 &&
         mouseY <= 0 - cameraY + 200 + magnifierImage1.height
     ) {
+        if(overlayContent2.style.display === 'flex') {
+            closeOverlayContent2();
+            magnifierImage2.src = 'assets/magnifier.png'
+        }
         showOverlayContent1();
         magnifierImage1.src = 'assets/magnifier_active.png'
+        magnifierImage2.src = 'assets/magnifier.png'
         drawBackground()
-
     }
 
     // Check if the mouse click is within the second magnifier
@@ -171,6 +181,10 @@ canvas.addEventListener("click", function (event) {
         mouseY >= 0 - cameraY + 260 &&
         mouseY <= 0 - cameraY + 260 + magnifierImage2.height
     ) {
+        if(overlayContent1.style.display === 'flex') {
+            closeOverlayContent1();
+            magnifierImage1.src = 'assets/magnifier.png'
+        }
         showOverlayContent2();
         magnifierImage2.src = 'assets/magnifier_active.png'
         drawBackground()
@@ -179,14 +193,14 @@ canvas.addEventListener("click", function (event) {
 
 // Add event listener to the close button
 closeButton1.addEventListener('click', () => {
-        closeOverlayContent();
+        closeOverlayContent1();
         magnifierImage1.src = 'assets/magnifier.png'
         magnifierImage2.src = 'assets/magnifier.png'
         drawBackground()
 });
 
 closeButton2.addEventListener('click', () => {
-    closeOverlayContent();
+    closeOverlayContent2();
     magnifierImage1.src = 'assets/magnifier.png'
     magnifierImage2.src = 'assets/magnifier.png'
     drawBackground()
