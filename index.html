@@ -2,22 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Wirtualna Ścieżka Edukacyjna</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skalne Safari</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/script.js" defer></script>
+
 </head>
 <body>
 
     <main>
         <div class="container">
             <div class="header">
-                <h1>Wirtualna Ścieżka Edukacyjna</h1>
+                <h1>Skalne Safari</h1>
             </div>
             <div class="content">
-                <img src="assets/formy_arkadowe_punkt_1.png" alt="formy_arkadowe_punkt_jeden">
+                <canvas id="canvas"></canvas>
+                <div id="overlayContent">
+                    <div id="overlayText">Click here to show content</div>
+                    <button id="closeButton">Close</button>
+                </div>
             </div>
         </div>
     </main>
+    <script src="js/classes/Camera.js" ></script>
+    <script src="js/classes/Sprite.js" ></script>
+    <script src="js/script.js" ></script>
 
 </body>
 </html>
