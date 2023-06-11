@@ -47,9 +47,22 @@ body {
     padding-block: 2rem;
 }
 
-#overlayContent1 > img, #overlayContent2 > img, #overlayContent3 > img, #overlayContent4 > img {
+#overlayContent3--second, #overlayContent3--first {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+#overlayContent1 img, #overlayContent2  img, #overlayContent3  img, #overlayContent4 img {
     width: 80%;
 }
+
+#overlayContent3--second{
+    display: none;
+}
+
 
 .overlayText {
     font-size: 18px;
@@ -84,6 +97,15 @@ body {
     border: none;
     border-radius: 5px;
     background-color: rgba(230, 0, 0, 0.8);
+    cursor: pointer;
+}
+
+#changeButton {
+    color: azure;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(0, 20, 150, 0.8);
     cursor: pointer;
 }
 

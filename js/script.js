@@ -9,6 +9,19 @@ const closeButton3 = document.getElementById('closeButton3');
 const closeButton4 = document.getElementById('closeButton4');
 const schemaButton = document.getElementById('schema');
 const schemaImg = document.getElementById('schemaImg');
+const dropdown = document.getElementById('background');
+
+const backgroundImage1 = new Image();
+backgroundImage1.src = 'assets/punkt_1.png'
+
+const backgroundImage2 = new Image();
+backgroundImage2.src = 'assets/punkt_2.png'
+
+let backgroundImage = backgroundImage1;
+dropdown.addEventListener('change', function (e) {
+    backgroundImage = e.target.value === 'backgroundImage1' ? backgroundImage1 : backgroundImage2;
+    drawBackground(backgroundImage);
+});
 
 const ctx = canvas.getContext('2d');
 
@@ -17,14 +30,6 @@ const spriteHeight = 462;
 
 const CANVAS_WIDTH = canvas.width = window.innerWidth - 20;
 const CANVAS_HEIGHT = canvas.height = 462;
-
-const backgroundImage1 = new Image();
-backgroundImage1.src = 'assets/punkt_1.png'
-
-const backgroundImage2 = new Image();
-backgroundImage2.src = 'assets/punkt_2.png'
-
-let backgroundImage = backgroundImage2
 
 const magnifierImage1 = new Image();
 magnifierImage1.src = 'assets/magnifier.png'
@@ -313,19 +318,24 @@ closeButton4.addEventListener('click', () => {
     drawBackground(backgroundImage)
 });
 
-// schemaButton.addEventListener('click', () => {
-//     // if (backgroundImage === backgroundImage1) {
-//     //     backgroundImage = backgroundImage2;
-//     //     drawBackground(backgroundImage)
-//     // } else {
-//     //     backgroundImage = backgroundImage1;
-//     //     drawBackground(backgroundImage)
-//     // }
-//
-//     // magnify the image when the schema button is clicked
-//     schemaButton.classList.toggle('active');
-//     console.log(schemaButton.classList)
-// });
+// Add event listener to the next button
+changeButton = document.getElementById('changeButton');
+overlayContent3Second = document.getElementById('overlayContent3--second');
+overlayContent3First = document.getElementById('overlayContent3--first');
+changeButton.addEventListener('click', () => {
+    // toggle the display of overlayContent3Second and overlayContent3First
+    toggleOverlayContent3();
+});
+
+function toggleOverlayContent3() {
+    if (overlayContent3Second.style.display === 'none') {
+        overlayContent3Second.style.display = 'flex';
+        overlayContent3First.style.display = 'none';
+    } else {
+        overlayContent3Second.style.display = 'none';
+        overlayContent3First.style.display = 'flex';
+    }
+}
 
 // Initial drawing
 backgroundImage1.onload = () => {

@@ -14,6 +14,13 @@
             <div class="header">
                 <h1>Skalne Safari</h1>
                 <p>Wirtualne Spotkanie z Unikalnym Środowiskiem Rezerwatu Przyrody Kamień nad Rzepedzią</p>
+                <div class="controls">
+                    <label for="background">Wybierz punkt:</label>
+                    <select id="background" name="background">
+                        <option value="backgroundImage1">Punkt 1</option>
+                        <option value="backgroundImage2">Punkt 2</option>
+                    </select>
+                </div>
             </div>
             <div class="content">
                 <canvas id="canvas"></canvas>
@@ -38,11 +45,21 @@
                     <button id="closeButton2">Zamknij</button>
                 </div>
                 <div id="overlayContent3">
-                    <div id="overlayText3" class="overlayText">
-                        <h2>Powłoki żelaziste i manganowe – polakierowane powierzanie skałek</h2>
-                        <p>Powłoki żelaziste na skalach piaskowcowych powstają w wyniku ciągłych procesów utleniania i osadzania się żelaza na powierzchni skały. Związki żelaza są rozpuszczane przez krążącą w skale wodę, następnie transportowane z wnętrza do warstw przypowierzchniowych. Podczas ogrzewania zewnętrznej warstwy skały przez słońce, woda wypreparowuje pozostawiając związki żelaza w przypowierzchniowej warstwie skały. Takie powłoki ze względu na zmienioną rozszerzalność cieplną mogę być bardziej podatne na eksfoliację. Ciemno grafitowy nalot na skale może oznaczać obecność minerałów wtórnych powstałych podczas wietrzenia chemicznego. Widoczne naloty manganu mogą działać konserwująco i spowalniać wietrzenie skały w niektórych miejscach</p>
+                    <div id="overlayContent3--first">
+                        <div id="overlayText3" class="overlayText">
+                            <h2>Powłoki żelaziste i manganowe – polakierowane powierzanie skałek</h2>
+                            <p>Powłoki żelaziste na skalach piaskowcowych powstają w wyniku ciągłych procesów utleniania i osadzania się żelaza na powierzchni skały. Związki żelaza są rozpuszczane przez krążącą w skale wodę, następnie transportowane z wnętrza do warstw przypowierzchniowych. Podczas ogrzewania zewnętrznej warstwy skały przez słońce, woda wypreparowuje pozostawiając związki żelaza w przypowierzchniowej warstwie skały. Takie powłoki ze względu na zmienioną rozszerzalność cieplną mogę być bardziej podatne na eksfoliację. Ciemno grafitowy nalot na skale może oznaczać obecność minerałów wtórnych powstałych podczas wietrzenia chemicznego. Widoczne naloty manganu mogą działać konserwująco i spowalniać wietrzenie skały w niektórych miejscach</p>
+                        </div>
+                        <img src="assets/8_mangan.png">
                     </div>
-                    <img src="assets/8_mangan.png">
+                    <div id="overlayContent3--second">
+                        <div id="overlayText3-second" class="overlayText">
+                            <h2>Łuszczenie</h2>
+                            <p>Proces łuszczenia w skalach to zjawisko, w którym warstwy zewnętrzne skał w tym przypadku piaskowce złuszczają/ oddzielają się równolegle od reszty skały. Jest to spowodowane przez wietrzenie insolacyjne (termiczne) – zmianami temperatury. Przypowierzchniowa, zewnętrzna warstwa skały nagrzewa się szybciej niż partie głębsze. Cykliczne nagrzewania i ochłodzenia powodują rozluźnienie i pęknięcia równoległe do powierzchni skalnej co prowadzi do zjawiska łuszczenia się. </p>
+                        </div>
+                        <img src="assets/9_foliacja.png">
+                    </div>
+                    <button id="changeButton">Zmień zakładkę</button>
                     <button id="closeButton3">Zamknij</button>
                 </div>
                 <div id="overlayContent4">
