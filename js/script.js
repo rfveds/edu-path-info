@@ -1,19 +1,30 @@
 const canvas = document.getElementById('canvas');
 const overlayContent1 = document.getElementById('overlayContent1');
 const overlayContent2 = document.getElementById('overlayContent2');
+const overlayContent3 = document.getElementById('overlayContent3');
+const overlayContent4 = document.getElementById('overlayContent4');
 const closeButton1 = document.getElementById('closeButton1');
 const closeButton2 = document.getElementById('closeButton2');
+const closeButton3 = document.getElementById('closeButton3');
+const closeButton4 = document.getElementById('closeButton4');
+const schemaButton = document.getElementById('schema');
+const schemaImg = document.getElementById('schemaImg');
 
 const ctx = canvas.getContext('2d');
 
 const spriteWidth = 3393;
 const spriteHeight = 462;
 
-const CANVAS_WIDTH = canvas.width = window.innerWidth;
+const CANVAS_WIDTH = canvas.width = window.innerWidth - 20;
 const CANVAS_HEIGHT = canvas.height = 462;
 
-const backgroundImage = new Image();
-backgroundImage.src = 'assets/formy_arkadowe_punkt_1.png'
+const backgroundImage1 = new Image();
+backgroundImage1.src = 'assets/punkt_1.png'
+
+const backgroundImage2 = new Image();
+backgroundImage2.src = 'assets/punkt_2.png'
+
+let backgroundImage = backgroundImage2
 
 const magnifierImage1 = new Image();
 magnifierImage1.src = 'assets/magnifier.png'
@@ -21,13 +32,14 @@ magnifierImage1.src = 'assets/magnifier.png'
 const magnifierImage2 = new Image();
 magnifierImage2.src = 'assets/magnifier.png'
 
-// Create a rectangle object
-const rectangle = {
-    x: 0,
-    y: 100,
-    width: 100,
-    height: 50,
-};
+const magnifierImage3 = new Image();
+magnifierImage3.src = 'assets/magnifier.png'
+
+const magnifierImage4 = new Image();
+magnifierImage4.src = 'assets/magnifier.png'
+
+const schemaImage = new Image();
+schemaImage.src = 'assets/schemat.png'
 
 // Define the camera position and size
 let cameraX = 0;
@@ -42,7 +54,7 @@ function updateCameraPosition(newX, newY) {
 }
 
 // Function to draw the background image based on the camera position
-function drawBackground() {
+function drawBackground(backgroundImage) {
     ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
     ctx.drawImage(
         backgroundImage, // Image to draw
@@ -50,40 +62,75 @@ function drawBackground() {
         0, 0, canvas.width, canvas.height // Destination on the canvas
     );
 
-    ctx.drawImage(
-        magnifierImage1, // Image to draw
-        0 - cameraX + 2370,
-        0 - cameraY + 200,
-        magnifierImage1.width * 0.5,
-        magnifierImage1.height * 0.5
-    );
+    if (backgroundImage === backgroundImage1) {
+        ctx.drawImage(
+            magnifierImage1, // Image to draw
+            0 - cameraX + 2370,
+            0 - cameraY + 200,
+            magnifierImage1.width * 0.5,
+            magnifierImage1.height * 0.5
+        );
 
-    ctx.drawImage(
-        magnifierImage2, // Image to draw
-        0 - cameraX + 2550,
-        0 - cameraY + 260,
-        magnifierImage2.width * 0.5,
-        magnifierImage2.height * 0.5
-    );
+        ctx.drawImage(
+            magnifierImage2, // Image to draw
+            0 - cameraX + 2550,
+            0 - cameraY + 260,
+            magnifierImage2.width * 0.5,
+            magnifierImage2.height * 0.5
+        );
+    }
+
+    if (backgroundImage === backgroundImage2) {
+        ctx.drawImage(
+            magnifierImage3, // Image to draw
+            0 - cameraX + 1925,
+            0 - cameraY + 125,
+            magnifierImage3.width * 0.5,
+            magnifierImage3.height * 0.5
+        );
+
+        ctx.drawImage(
+            magnifierImage4, // Image to draw
+            0 - cameraX + 1975,
+            0 - cameraY + 225,
+            magnifierImage4.width * 0.5,
+            magnifierImage4.height * 0.5
+        );
+    }
 }
+
 
 // Function to show the overlay content
-function showOverlayContent1() {
-    overlayContent1.style.display = 'flex';
-    drawBackground()
-}
-
-function showOverlayContent2() {
-    overlayContent2.style.display = 'flex';
-    drawBackground()
+function showOverlayContent(n) {
+    const contentId = 'overlayContent' + n;
+    const content = document.getElementById(contentId);
+    content.style.display = 'flex';
+    drawBackground(backgroundImage);
 }
 
 // Function to close the overlay content
 function closeOverlayContent1() {
     overlayContent1.style.display = 'none';
     overlayContent2.style.display = 'none';
+    overlayContent3.style.display = 'none';
+    overlayContent4.style.display = 'none';
 }
 function closeOverlayContent2() {
+    overlayContent1.style.display = 'none';
+    overlayContent2.style.display = 'none';
+    overlayContent3.style.display = 'none';
+    overlayContent4.style.display = 'none';
+}
+
+function closeOverlayContent3() {
+    overlayContent3.style.display = 'none';
+    overlayContent4.style.display = 'none';
+    overlayContent1.style.display = 'none';
+    overlayContent2.style.display = 'none';
+}
+function closeOverlayContent4() {
+    overlayContent4.style.display = 'none';
+    overlayContent3.style.display = 'none';
     overlayContent1.style.display = 'none';
     overlayContent2.style.display = 'none';
 }
@@ -100,7 +147,7 @@ document.addEventListener('keydown', (event) => {
         updateCameraPosition(cameraX - 10, cameraY);
     }
 
-    drawBackground(); // Redraw the background image based on the updated camera position
+    drawBackground(backgroundImage); // Redraw the background image based on the updated camera position
 });
 
 
@@ -136,7 +183,7 @@ document.addEventListener('mousemove', (event) => {
             cameraY = newCameraY;
         }
 
-        drawBackground(); // Redraw the background image based on the updated camera position
+        drawBackground(backgroundImage); // Redraw the background image based on the updated camera position
 
         // Update the initial mouse position for the next movement calculation
         initialMouseX = event.clientX;
@@ -150,45 +197,91 @@ document.addEventListener('mouseup', (event) => {
 });
 
 
-
 // Event listener for mouse click
 canvas.addEventListener("click", function (event) {
     const rect = canvas.getBoundingClientRect();
     const mouseX = event.clientX - rect.left;
     const mouseY = event.clientY - rect.top;
 
-    // Check if the mouse click is within the first magnifier
-    if (
-        mouseX >= 0 - cameraX + 2370 &&
-        mouseX <= 0 - cameraX + 2370 + magnifierImage1.width &&
-        mouseY >= 0 - cameraY + 200 &&
-        mouseY <= 0 - cameraY + 200 + magnifierImage1.height
-    ) {
-        if(overlayContent2.style.display === 'flex') {
-            closeOverlayContent2();
+    if (backgroundImage === backgroundImage1) {
+
+        // Check if the mouse click is within the first magnifier
+        if (
+            mouseX >= 0 - cameraX + 2370 &&
+            mouseX <= 0 - cameraX + 2370 + magnifierImage1.width &&
+            mouseY >= 0 - cameraY + 200 &&
+            mouseY <= 0 - cameraY + 200 + magnifierImage1.height
+        ) {
+            if (overlayContent2.style.display === 'flex' || overlayContent3.style.display === 'flex' || overlayContent4.style.display === 'flex') {
+                closeOverlayContent2();
+                closeOverlayContent3();
+                closeOverlayContent4();
+                magnifierImage2.src = 'assets/magnifier.png'
+            }
+            showOverlayContent('1');
+            magnifierImage1.src = 'assets/magnifier_active.png'
             magnifierImage2.src = 'assets/magnifier.png'
+            drawBackground(backgroundImage)
         }
-        showOverlayContent1();
-        magnifierImage1.src = 'assets/magnifier_active.png'
-        magnifierImage2.src = 'assets/magnifier.png'
-        drawBackground()
+
+        // Check if the mouse click is within the second magnifier
+        if (
+            mouseX >= 0 - cameraX + 2550 &&
+            mouseX <= 0 - cameraX + 2550 + magnifierImage2.width &&
+            mouseY >= 0 - cameraY + 260 &&
+            mouseY <= 0 - cameraY + 260 + magnifierImage2.height
+        ) {
+            if (overlayContent1.style.display === 'flex' || overlayContent3.style.display === 'flex' || overlayContent4.style.display === 'flex') {
+                closeOverlayContent1();
+                closeOverlayContent3();
+                closeOverlayContent4();
+                magnifierImage1.src = 'assets/magnifier.png'
+            }
+            showOverlayContent('2');
+            magnifierImage2.src = 'assets/magnifier_active.png'
+            drawBackground(backgroundImage)
+        }
     }
 
-    // Check if the mouse click is within the second magnifier
-    if (
-        mouseX >= 0 - cameraX + 2550 &&
-        mouseX <= 0 - cameraX + 2550 + magnifierImage2.width &&
-        mouseY >= 0 - cameraY + 260 &&
-        mouseY <= 0 - cameraY + 260 + magnifierImage2.height
-    ) {
-        if(overlayContent1.style.display === 'flex') {
-            closeOverlayContent1();
-            magnifierImage1.src = 'assets/magnifier.png'
+    if(backgroundImage === backgroundImage2) {
+        // Check if the mouse click is within the third magnifier
+        if (
+            mouseX >= 0 - cameraX + 1925 &&
+            mouseX <= 0 - cameraX + 1925 + magnifierImage3.width &&
+            mouseY >= 0 - cameraY + 125 &&
+            mouseY <= 0 - cameraY + 125 + magnifierImage3.height
+        ) {
+            if (overlayContent2.style.display === 'flex' || overlayContent1.style.display === 'flex' || overlayContent4.style.display === 'flex') {
+                closeOverlayContent2();
+                closeOverlayContent1();
+                closeOverlayContent4();
+                magnifierImage4.src = 'assets/magnifier.png'
+            }
+            showOverlayContent('3');
+            magnifierImage3.src = 'assets/magnifier_active.png'
+            magnifierImage4.src = 'assets/magnifier.png'
+            drawBackground(backgroundImage)
         }
-        showOverlayContent2();
-        magnifierImage2.src = 'assets/magnifier_active.png'
-        drawBackground()
+
+        // Check if the mouse click is within the fourth magnifier
+        if (
+            mouseX >= 0 - cameraX + 1975 &&
+            mouseX <= 0 - cameraX + 1975 + magnifierImage4.width &&
+            mouseY >= 0 - cameraY + 225 &&
+            mouseY <= 0 - cameraY + 225 + magnifierImage4.height
+        ) {
+            if (overlayContent1.style.display === 'flex' || overlayContent2.style.display === 'flex' || overlayContent3.style.display === 'flex') {
+                closeOverlayContent1();
+                closeOverlayContent2();
+                closeOverlayContent3();
+                magnifierImage3.src = 'assets/magnifier.png'
+            }
+            showOverlayContent('4');
+            magnifierImage4.src = 'assets/magnifier_active.png'
+            drawBackground(backgroundImage)
+        }
     }
+
 });
 
 // Add event listener to the close button
@@ -196,17 +289,45 @@ closeButton1.addEventListener('click', () => {
         closeOverlayContent1();
         magnifierImage1.src = 'assets/magnifier.png'
         magnifierImage2.src = 'assets/magnifier.png'
-        drawBackground()
+        drawBackground(backgroundImage)
 });
 
 closeButton2.addEventListener('click', () => {
     closeOverlayContent2();
     magnifierImage1.src = 'assets/magnifier.png'
     magnifierImage2.src = 'assets/magnifier.png'
-    drawBackground()
+    drawBackground(backgroundImage)
 });
 
+closeButton3.addEventListener('click', () => {
+    closeOverlayContent3();
+    magnifierImage3.src = 'assets/magnifier.png'
+    magnifierImage4.src = 'assets/magnifier.png'
+    drawBackground(backgroundImage)
+});
+
+closeButton4.addEventListener('click', () => {
+    closeOverlayContent4();
+    magnifierImage3.src = 'assets/magnifier.png'
+    magnifierImage4.src = 'assets/magnifier.png'
+    drawBackground(backgroundImage)
+});
+
+// schemaButton.addEventListener('click', () => {
+//     // if (backgroundImage === backgroundImage1) {
+//     //     backgroundImage = backgroundImage2;
+//     //     drawBackground(backgroundImage)
+//     // } else {
+//     //     backgroundImage = backgroundImage1;
+//     //     drawBackground(backgroundImage)
+//     // }
+//
+//     // magnify the image when the schema button is clicked
+//     schemaButton.classList.toggle('active');
+//     console.log(schemaButton.classList)
+// });
+
 // Initial drawing
-backgroundImage.onload = () => {
-    drawBackground();
+backgroundImage1.onload = () => {
+    drawBackground(backgroundImage);
 };

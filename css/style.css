@@ -31,7 +31,7 @@ body {
     height: 70%;
 }
 
-#overlayContent1, #overlayContent2 {
+#overlayContent1, #overlayContent2, #overlayContent3, #overlayContent4 {
     position: absolute;
     top: 15%;
     left: 15%;
@@ -42,17 +42,69 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    gap: 1rem;
+    overflow-y: scroll;
+    padding-block: 2rem;
+}
+
+#overlayContent1 > img, #overlayContent2 > img, #overlayContent3 > img, #overlayContent4 > img {
+    width: 80%;
 }
 
 .overlayText {
     font-size: 18px;
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: 2rem;
+    padding-inline: 2rem;
 }
 
-#closeButton1, #closeButton2 {
+#overlayText2 {
+    margin-top: 250px;
+}
+
+#overlayText3   {
+    margin-top: 200px;
+}
+
+#overlayText4 {
+    margin-top: 150px;
+}
+
+.overlayText > h2 {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#closeButton1, #closeButton2, #closeButton3, #closeButton4 {
+    color: azure;
     padding: 5px 10px;
     border: none;
-    background-color: #ddd;
+    border-radius: 5px;
+    background-color: rgba(230, 0, 0, 0.8);
     cursor: pointer;
 }
 
+/*.nav {*/
+/*    position: absolute;*/
+/*    top: 65%;*/
+/*    left: 2%;*/
+/*}*/
+
+/*.nav > img {*/
+/*    width: 10%;*/
+/*    height: 10%;*/
+/*}*/
+
+/*.active {*/
+/*    position: absolute;*/
+/*    top: 40% ;*/
+/*    left: 15%*/
+/*}*/
+
+/*.active > img {*/
+/*    width: 40%;*/
+/*    height: 40%;*/
+/*}*/
