@@ -18,10 +18,10 @@ const backgroundImage2 = new Image();
 backgroundImage2.src = 'assets/punkt_2.png'
 
 let backgroundImage = backgroundImage1;
-dropdown.addEventListener('change', function (e) {
-    backgroundImage = e.target.value === 'backgroundImage1' ? backgroundImage1 : backgroundImage2;
-    drawBackground(backgroundImage);
-});
+// dropdown.addEventListener('change', function (e) {
+//     backgroundImage = e.target.value === 'backgroundImage1' ? backgroundImage1 : backgroundImage2;
+//     drawBackground(backgroundImage);
+// });
 
 const ctx = canvas.getContext('2d');
 
@@ -341,3 +341,23 @@ function toggleOverlayContent3() {
 backgroundImage1.onload = () => {
     drawBackground(backgroundImage);
 };
+
+const schema = document.getElementById('schema');
+schema.addEventListener('click', () => {
+    // toggle active class
+    schema.classList.toggle('active');
+});
+
+const point1 = document.getElementById('point1');
+
+point1.addEventListener('click', () => {
+    backgroundImage = backgroundImage1;
+    drawBackground(backgroundImage);
+});
+
+const point2 = document.getElementById('point2');
+
+point2.addEventListener('click', () => {
+    backgroundImage = backgroundImage2;
+    drawBackground(backgroundImage);
+});

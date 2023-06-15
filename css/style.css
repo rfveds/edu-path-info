@@ -109,24 +109,41 @@ body {
     cursor: pointer;
 }
 
-/*.nav {*/
-/*    position: absolute;*/
-/*    top: 65%;*/
-/*    left: 2%;*/
-/*}*/
+#schema {
+    width: 100px;
+    position: absolute;
+    top: 75%;
+    left: 2%;
 
-/*.nav > img {*/
-/*    width: 10%;*/
-/*    height: 10%;*/
-/*}*/
+}
 
-/*.active {*/
-/*    position: absolute;*/
-/*    top: 40% ;*/
-/*    left: 15%*/
-/*}*/
+.active {
+    top: 40% !important;
+    left: 15% !important;
+    width: 400px !important;
+}
 
-/*.active > img {*/
-/*    width: 40%;*/
-/*    height: 40%;*/
-/*}*/
+#schemaImg {
+    width: 100%;
+    height: 100%;
+}
+
+#point1 {
+    position: relative;
+    top: -280px;
+    left: 10px;
+    height: 40px;
+    width: 40px;
+    background-color: transparent;
+    z-index: 99;
+}
+
+#point2 {
+    position: relative;
+    top: -270px;
+    left: 60px;
+    height: 30px;
+    width: 30px;
+    background-color: transparent;
+    z-index: 99;
+}
